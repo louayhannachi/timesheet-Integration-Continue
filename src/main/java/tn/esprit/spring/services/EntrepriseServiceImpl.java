@@ -23,7 +23,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	@Autowired
 	DepartementRepository deptRepoistory;
 	
-	private static final Logger l = LogManager.getLogger(EntrepriseServiceImplTest.class);
+	private static final Logger l = LogManager.getLogger(EntrepriseServiceImpl.class);
 
 	
 	public int ajouterEntreprise(Entreprise entreprise) {

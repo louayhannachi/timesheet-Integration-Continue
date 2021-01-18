@@ -18,7 +18,7 @@ public interface IEntrepriseService {
 	//home work
 	public List<Entreprise> retrieveAllEntreprise();
 	public Entreprise addEntreprise(Entreprise e);
-	Entreprise updateEntreprise(Entreprise u);
-	void deleteEntreprise(int id);
-	Entreprise retrieveEntreprise(int id);
+	public Entreprise updateEntreprise(Entreprise u);
+	public void deleteEntreprise(int id);
+	public Entreprise retrieveEntreprise(int id);
 }

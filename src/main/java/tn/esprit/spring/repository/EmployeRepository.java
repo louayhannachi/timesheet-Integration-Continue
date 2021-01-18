@@ -32,11 +32,14 @@ public interface EmployeRepository extends CrudRepository<Employe, Integer>  {
 //			+ "join emp.departements dps "
 //			+ "join dps.entreprise entrep "
 //			+ "where entrep=:entreprise")
-    @Query("Select "
-			+ "DISTINCT emp from Employe emp "
-			+ "join emp.departements dps "
-			+ "where deps.entreprise=:entreprise")
-    // à tester avec l'id :  deps.entreprise.id:=id 
+//    @Query("Select "
+//			+ "DISTINCT emp from Employe emp "
+//			+ "join emp.departements dps "
+//			+ "where deps.entreprise.id:=id")
+//    @Query("Select DISTINCT emp.id from Employe emp join departement dps where dps.entreprise_id=emp.id")
+    
+    @Query("SELECT nom FROM Employe")
+    // à tester avec l'id :  deps.entreprise=:entreprise 
     public List<Employe> getAllEmployeByEntreprisec(@Param("entreprise") Entreprise entreprise);
     
     @Modifying
