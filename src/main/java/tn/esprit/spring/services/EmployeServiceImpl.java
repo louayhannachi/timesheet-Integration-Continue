@@ -18,10 +18,11 @@ import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.EmployeRepository;
 import tn.esprit.spring.repository.TimesheetRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Service
 public class EmployeServiceImpl implements IEmployeService {
-
 	@Autowired
 	EmployeRepository employeRepository;
 	@Autowired
@@ -30,11 +31,62 @@ public class EmployeServiceImpl implements IEmployeService {
 	ContratRepository contratRepoistory;
 	@Autowired
 	TimesheetRepository timesheetRepository;
+	
+	private static final Logger l = LogManager.getLogger(EmployeServiceImpl.class);
+	
+
+	@Override
+	public List<Employe> retrieveAllEmployes() {
+		l.info("In  retrieveAllUsers : "); 
+		List<Employe> employes = (List<Employe>) employeRepository.findAll();  
+		for (Employe employe : employes) {
+			l.debug("employe +++ : " + employe);
+		}
+		l.info("Out of retrieveAllEmployes."); 
+		return employes;
+	}
+	
+	
+	
+	@Override
+	public Employe addEmploye(Employe e) {
+		l.info("In  addEmployer : " + e); 
+		Employe employeSaved = employeRepository.save(e);
+		l.info("Out of  addEmployer. "); 
+		return employeSaved; 
+	}
+	
+	
+	@Override 
+	public Employe updateEmploye(Employe e) {
+		return employeRepository.save(e);
+	}
+
+	@Override
+	public void deleteEmploye(int id) {
+		employeRepository.deleteById(id);
+	}
+
+	@Override
+	public Employe retrieveEmploye (int id) {
+		l.info("in  retrieveUser id = " + id);
+		// Optional retrun type - Java 8 (susceptible de retourner des valeurs «vides» et pas null)
+	//	Employe e =  employeRepository.findById(Long.parseLong(id)).orElse(null);
+		Employe e =  employeRepository.findById(id).get(); 
+		l.info("user returned : " + e);
+		return e; 
+	}
+
 
 	@Override
 	public Employe authenticate(String login, String password) {
 		return employeRepository.getEmployeByEmailAndPassword(login, password);
 	}
+
+
+	
+	
+	
 
 	@Override
 	public int addOrUpdateEmploye(Employe employe) {
@@ -158,4 +210,30 @@ public class EmployeServiceImpl implements IEmployeService {
 		return (List<Employe>) employeRepository.findAll();
 	}
 
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
