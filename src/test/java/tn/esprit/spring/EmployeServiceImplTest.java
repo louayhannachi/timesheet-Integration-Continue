@@ -43,8 +43,7 @@ public class EmployeServiceImplTest {
 	@Test
 	public void testRetrieveAllEmployes() {
 		List<Employe> listEmployes = es.retrieveAllEmployes(); 
-		// if there are 5 Employes in DB : 
-		Assertions.assertEquals(5, listEmployes.size());
+		Assertions.assertFalse(listEmployes.isEmpty());
 	}
 
 	@Test

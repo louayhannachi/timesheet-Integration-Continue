@@ -37,7 +37,7 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	@Override
 	public List<Employe> retrieveAllEmployes() {
-		l.info("In  retrieveAllUsers : "); 
+		l.info("In  retrieveAllEmployes : "); 
 		List<Employe> employes = (List<Employe>) employeRepository.findAll();  
 		for (Employe employe : employes) {
 			l.debug("employe +++ : " + employe);
@@ -69,11 +69,11 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	@Override
 	public Employe retrieveEmploye (int id) {
-		l.info("in  retrieveUser id = " + id);
+		l.info("in  retrieveEmploye id = " + id);
 		// Optional retrun type - Java 8 (susceptible de retourner des valeurs «vides» et pas null)
 	//	Employe e =  employeRepository.findById(Long.parseLong(id)).orElse(null);
 		Employe e =  employeRepository.findById(id).get(); 
-		l.info("user returned : " + e);
+		l.info("Employe returned : " + e);
 		return e; 
 	}
 
