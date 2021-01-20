@@ -34,13 +34,13 @@ public class EntrepriseServiceImplTest {
 		Entreprise entrepriseUpdated = es.updateEntreprise(e); 
 		Assertions.assertEquals(e.getName(), entrepriseUpdated.getName());
 	}
-
-
+	
 	@Test
-	public void testRetrieveEntreprise() {
-		Entreprise entrepriseRetrieved = es.retrieveEntreprise(1); 
-		Assertions.assertEquals(1L, entrepriseRetrieved.getId());
+	public void testDeleteEntreprise() {	
+		List<Entreprise> listEntreprise = es.retrieveAllEntreprise(); 
+	    Integer id = listEntreprise.get(0).getId();
+	    es.deleteEntreprise(id);
+	    Assertions.assertNull(es.retrieveEntreprise(id));
 	}
-
 }
 

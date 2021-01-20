@@ -110,7 +110,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	@Override
 	public Entreprise retrieveEntreprise(int id) {
 		l.info("in  retrieveEntreprise id = " + id);
-		Entreprise e =  entrepriseRepoistory.findById(id).get();
+		Entreprise e =  entrepriseRepoistory.findById(id).orElse(null);
 		l.info("Entreprise returned : " + e);
 		return e; 
 	}
