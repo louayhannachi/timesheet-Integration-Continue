@@ -78,7 +78,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	// home work 
 	@Override
 	public List<Entreprise> retrieveAllEntreprise() {
-		l.info("In  retrieveAllEntreprise : "); 
+		l.info("In retrieveAllEntreprise : "); 
 		List<Entreprise> entrepriseList = (List<Entreprise>) entrepriseRepoistory.findAll();  
 		for (Entreprise e : entrepriseList) {
 			l.debug("Entreprise +++ : " + e);
@@ -89,27 +89,27 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	
 	@Override
 	public Entreprise addEntreprise(Entreprise e) {
-		l.info("In  addEntreprise : " + e); 
+		l.info("In addEntreprise : " + e); 
 		Entreprise entreprise = entrepriseRepoistory.save(e);
-		l.info("Out of  addEntreprise. "); 
+		l.info("Out of addEntreprise. "); 
 		return entreprise; 
 	}
 
 	@Override 
 	public Entreprise updateEntreprise(Entreprise e) {
-		l.info("In  updateEntreprise : " + e); 
+		l.info("In updateEntreprise : " + e); 
 		return entrepriseRepoistory.save(e);
 	}
 
 	@Override
 	public void deleteEntreprise(int id) {
-		l.info("In  deleteEntreprise : " + id); 
+		l.info("In deleteEntreprise : " + id); 
 		entrepriseRepoistory.deleteById(id);
 	}
 
 	@Override
 	public Entreprise retrieveEntreprise(int id) {
-		l.info("in  retrieveEntreprise id = " + id);
+		l.info("in retrieveEntreprise id = " + id);
 		Entreprise e =  entrepriseRepoistory.findById(id).orElse(null);
 		l.info("Entreprise returned : " + e);
 		return e; 
