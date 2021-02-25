@@ -20,21 +20,32 @@ public class DepartementServiceImpl implements IDepartementService {
 	private static final Logger l = LogManager.getLogger(DepartementServiceImpl.class);
 
 	public List<Departement> getAllDepartements() {
+		l.info("In getAllDepartement method");
 		return (List<Departement>) deptRepository.findAll();
 	}
 
 	@Override
 	public Departement addOrUpdateDep(Departement d) {
+		l.info("In addOrUpdateDep method");
 		Departement dept = deptRepository.save(d);
+		l.info("In addOrUpdateDep method (after added) : "+ dept);
 		return dept;
 	}
 	
 	
 	@Override
 	public Departement addDepartement(Departement dep) {
-		l.info("In Adding departement : " + dep); 
-		Departement savedDep = deptRepository.save(dep);
-		l.info("Out of  Adding departement. "); 
+		l.info("In Adding departement : " + dep);
+		Departement savedDep = null;
+		try {
+		savedDep = deptRepository.save(dep);
+		l.info("Out of  Adding departement (after returning) "); 
+		} catch (Exception e) {
+		  l.error("Out of  addDepartement with errors. : "+ e); 
+		}
+		finally {
+		  l.info("Out of  method addDepartement. "); 
+		}
 		return savedDep; 
 	}
 	
@@ -45,14 +56,15 @@ public class DepartementServiceImpl implements IDepartementService {
 
 	@Override
 	public Departement retrieveDepartement(int id) {
-		l.info("in  retrieving departement id = " + id);
+		l.info("In retrieving departement id = " + id);
 		Departement dep =  deptRepository.findById(id).get(); 
-		l.info("departement returned : " + dep);
+		l.info("Departement returned : " + dep);
 		return dep; 
 	}
 
 	@Override
 	public void deleteDepartement(int id) {
+		l.info("In deleting departement id = " + id);
 		deptRepository.deleteById(id);		
 	}
 	
