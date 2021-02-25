@@ -46,7 +46,7 @@ public class DepartementServiceImpl implements IDepartementService {
 	@Override
 	public Departement retrieveDepartement(int id) {
 		l.info("in  retrieving departement id = " + id);
-		Departement dep =  deptRepository.findById(id).get(); 
+		Departement dep =  deptRepository.findById(id).orElse(null); 
 		l.info("departement returned : " + dep);
 		return dep; 
 	}
