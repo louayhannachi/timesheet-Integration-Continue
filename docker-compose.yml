@@ -14,4 +14,11 @@ services:
     ports:
       - "8086:8086"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone:3306/timesheetdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCo
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone:3306/timesheetdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: "sa"
+      SPRING_DATASOURCE_PASSWORD: "password"
+    build:
+      context: "./"
+      dockerfile: "Dockerfile"
+    depends_on:
+      - mysql-standalone
